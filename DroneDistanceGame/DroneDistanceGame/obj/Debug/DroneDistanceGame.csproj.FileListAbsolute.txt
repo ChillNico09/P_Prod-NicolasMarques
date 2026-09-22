@@ -1,0 +1,8 @@
+D:\ETML-2eme\P_Prod\DroneDistanceGame\DroneDistanceGame\bin\Debug\DroneDistanceGame.exe.config
+D:\ETML-2eme\P_Prod\DroneDistanceGame\DroneDistanceGame\bin\Debug\DroneDistanceGame.exe
+D:\ETML-2eme\P_Prod\DroneDistanceGame\DroneDistanceGame\bin\Debug\DroneDistanceGame.pdb
+D:\ETML-2eme\P_Prod\DroneDistanceGame\DroneDistanceGame\obj\Debug\DroneDistanceGame.csproj.AssemblyReference.cache
+D:\ETML-2eme\P_Prod\DroneDistanceGame\DroneDistanceGame\obj\Debug\DroneDistanceGame.csproj.CoreCompileInputs.cache
+D:\ETML-2eme\P_Prod\DroneDistanceGame\DroneDistanceGame\obj\Debug\DroneDistanceGame.exe
+D:\ETML-2eme\P_Prod\DroneDistanceGame\DroneDistanceGame\obj\Debug\DroneDistanceGame.pdb
+D:\ETML-2eme\P_Prod\DroneDistanceGame\DroneDistanceGame\obj\Debug\DroneDistanceGame.exe.config
