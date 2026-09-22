@@ -13,24 +13,27 @@ namespace DroneDistanceGame
         {
             //Variables
             bool continuePlaying = Interface.ContinuePlaying;
+            bool isPlaying = Interface.IsPlaying;
 
             //Console
             Console.CursorVisible = false;
             Console.ForegroundColor = ConsoleColor.White;
-            /*
-            Drone cool = new Drone(100, 100, 1);
-            while (true)
-            {
-                cool.MoveDrone();
-                Thread.Sleep(100);
-            }
-            */
+
+            List<Drone> listDrones = new List<Drone>();
+            listDrones.Add(new Drone(100, 100f, 1.1f));
+            
             Interface.DisplayMenu();
             
             while (continuePlaying)
             {
+                while(isPlaying)
+                {
+                    listDrones[0].MoveDrone();
+                    Thread.Sleep(100);
+                }
                 Interface.UserInputHandler();
                 continuePlaying = Interface.ContinuePlaying;
+                isPlaying = Interface.IsPlaying;
             }
             Environment.Exit(0);
             

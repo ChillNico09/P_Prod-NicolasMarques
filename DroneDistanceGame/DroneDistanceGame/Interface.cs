@@ -19,6 +19,7 @@ namespace DroneDistanceGame
         private static int instructionOffsetTop = maxCursorDown + 2;
         private static int menuLeftOffset = 5;
         public static bool ContinuePlaying { get;  private set; } = true;
+        public static bool IsPlaying { get; private set; } = false;
 
 
         /// <summary>
@@ -91,29 +92,24 @@ namespace DroneDistanceGame
         /// <param name="colorInput">La couleur qu'on veut donner à l'instruction</param>
         private static void WriteInstruction(string instruction, ConsoleColor colorInput, char charToCheck)
         {
-            char[] charArray = new char[instruction.Length];
-            for (int i = 0; i < charArray.Length; i++)
+            int wordPlaceNumber = 0;
+            string[] splittedInstruction = instruction.Split(charToCheck);
+
+            foreach (string line in splittedInstruction)
             {
-                charArray[i] = instruction[i];
-                if(i > 1)
+                wordPlaceNumber++;
+                if (wordPlaceNumber == 1)
                 {
-                    if (charArray[i - 1] == charToCheck)
-                    {
-                        Console.ForegroundColor = colorInput;
-                    }
-                    else if (i - charArray.Length == -1)
-                    {
-                        Console.WriteLine($"{charArray[i]}");
-                        Console.ForegroundColor = ConsoleColor.Gray;              
-                    }
+                    Console.ForegroundColor = ConsoleColor.Gray;
+                    Console.Write($"{line}:");
                 }
-                
-                if(i - charArray.Length != -1)
+                else if (wordPlaceNumber == 2)
                 {
-                    Console.Write($"{charArray[i]}");
+                    Console.ForegroundColor = colorInput;
+                    Console.WriteLine($"{line}");
                 }
-                
             }
+
         }
 
 
@@ -202,7 +198,7 @@ namespace DroneDistanceGame
                 //Le bouton "Play"
                 case 0:
                     Console.Clear();
-                    Console.WriteLine("Play Pressed!");
+                    IsPlaying = true;
                     break;
                 //Le bouton "Help"
                 case 1:

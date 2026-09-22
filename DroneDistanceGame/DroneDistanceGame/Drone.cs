@@ -13,14 +13,15 @@ namespace DroneDistanceGame
         private const string SPRITEDEAD = "|-x-|";
 
         private bool isDead;
-        private int posTop = 0;
-        private int posLeft = 0;
+        private int posTop;
+        private int posLeft;
+        private bool isInShop;
 
         private int _totalBattery;
         private float _currentBattery;
         private float _batteryUsage;
 
-        //Arguments
+        //Attributs
         public int TotalBattery
         {
             get
@@ -89,26 +90,74 @@ namespace DroneDistanceGame
             isDead = false;
             posLeft = 0;
             posTop = 0;
-        }
-
-        public void MoveDrone()
-        {
-            EraseSprite();
-            DisplayDrone();
-            CurrentBattery -= BatteryUsage;
-            posLeft += 1;
+            isInShop = true;
         }
 
 
         /// <summary>
-        /// Va afficher le drone
+        /// Va permettre au drone de bouger.
+        /// Méthode qui appelle plein d'autre méthode.
         /// </summary>
-        private void DisplayDrone()
+        public void MoveDrone()
         {
-            Console.SetCursorPosition(posLeft, posTop);
-            Console.Write(SPRITEALIVE);
+            EraseSprite();
+            DisplayDrone(isDead);
+            ChangeDroneValue();
+            DisplayStats(true);
         }
 
+
+        /// <summary>
+        /// Va afficher les stats du drone
+        /// </summary>
+        /// <param name="isActive">Indique si le drone est actif (en mouvement) ou s'il est simplement dans le magasin</param>
+        public void DisplayStats(bool isActive)
+        {
+            if (isActive)
+            {
+                isInShop = false;
+            }
+            else
+            {
+                isInShop = true;
+            }
+            Console.SetCursorPosition(0, 3);
+            Console.Write(this);
+        }
+
+        /// <summary>
+        /// Va décrementer la batterie et augmenter sa posTop
+        /// </summary>
+        private void ChangeDroneValue()
+        {
+            if(CurrentBattery <= 0)
+            {
+                isDead = true;
+            }
+            else
+            {
+                CurrentBattery -= BatteryUsage;
+                posLeft += 1;
+            }
+        }
+
+        /// <summary>
+        /// Va afficher le drone
+        /// </summary>
+        private void DisplayDrone(bool isDead)
+        {
+            if (isDead)
+            {
+                Console.SetCursorPosition(posLeft, posTop);
+                Console.Write(SPRITEDEAD);
+            }
+            else
+            {
+                Console.SetCursorPosition(posLeft, posTop);
+                Console.Write(SPRITEALIVE);
+            }
+            
+        }
 
         /// <summary>
         /// Va effacer le sprite du drone
@@ -124,7 +173,15 @@ namespace DroneDistanceGame
 
         public override string ToString()
         {
-            return $"Batterie total: {_totalBattery}\nBatterie actuel: {_currentBattery}\nUtilisation de la batterie: {_batteryUsage}";
+            if (isInShop)
+            {
+                return $"Batterie total: {_totalBattery}\nUtilisation de la batterie: {_batteryUsage}";
+            }
+            else
+            {
+                return $"Batterie total: {_totalBattery}\nBatterie actuel: {_currentBattery} \nDistance: {posLeft}";
+            }
         }
+
     }
 }
