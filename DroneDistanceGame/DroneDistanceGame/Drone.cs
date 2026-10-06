@@ -81,7 +81,10 @@ namespace DroneDistanceGame
                 }
             }
         }
-        public Drone(int totalBattery, float currentBattery, float batteryUsage)
+
+        public string DroneName { get; private set; }
+
+        public Drone(int totalBattery, float currentBattery, float batteryUsage, string droneName)
         {
             this.TotalBattery = totalBattery;
             this.CurrentBattery = currentBattery;
@@ -90,6 +93,7 @@ namespace DroneDistanceGame
             isDead = false;
             posLeft = 0;
             posTop = 0;
+            DroneName = droneName;
             isInShop = true;
         }
 
@@ -106,12 +110,11 @@ namespace DroneDistanceGame
             DisplayStats(true);
         }
 
-
         /// <summary>
         /// Va afficher les stats du drone
         /// </summary>
         /// <param name="isActive">Indique si le drone est actif (en mouvement) ou s'il est simplement dans le magasin</param>
-        public void DisplayStats(bool isActive)
+        private void DisplayStats(bool isActive)
         {
             if (isActive)
             {
@@ -175,11 +178,11 @@ namespace DroneDistanceGame
         {
             if (isInShop)
             {
-                return $"Batterie total: {_totalBattery}\nUtilisation de la batterie: {_batteryUsage}";
+                return $"Modèle: {DroneName}\nBatterie total: {_totalBattery}\nUtilisation de la batterie: {_batteryUsage}";
             }
             else
             {
-                return $"Batterie total: {_totalBattery}\nBatterie actuel: {_currentBattery} \nDistance: {posLeft}";
+                return $"Batterie total: {_totalBattery}\nBatterie actuel: {Math.Round(_currentBattery, 2)}  \nDistance: {posLeft}";
             }
         }
 

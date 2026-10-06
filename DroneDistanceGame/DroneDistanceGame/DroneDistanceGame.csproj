@@ -46,6 +46,7 @@
     <Compile Include="Drone.cs" />
     <Compile Include="HelpPage.cs" />
     <Compile Include="Interface.cs" />
+    <Compile Include="PlayGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

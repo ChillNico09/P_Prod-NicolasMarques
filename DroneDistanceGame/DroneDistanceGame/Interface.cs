@@ -20,6 +20,8 @@ namespace DroneDistanceGame
         private static int menuLeftOffset = 5;
         public static bool ContinuePlaying { get;  private set; } = true;
         public static bool IsPlaying { get; private set; } = false;
+        public static bool IsChoosing { get; private set; } = false;
+        public static int DroneIndex { get; private set; }
 
 
         /// <summary>
@@ -70,6 +72,42 @@ namespace DroneDistanceGame
         }
 
 
+        public static void ChooseDrone(List<Drone> listDrones)
+        {
+            int droneID = 0;
+            foreach (Drone drone in listDrones)
+            {
+                droneID++;
+                Console.WriteLine($"Numéro du drone: {droneID}\n{drone}\n");
+            }
+
+            Console.Write("\n\nChoisir le numéro du drone voulu (ne vérifie pas encore si la valeur est trop grande ou petite) : ");
+            string chosenDrone = Console.ReadLine();
+            VerifyChosenDrone(chosenDrone, listDrones);
+        }
+
+        private static void VerifyChosenDrone(string chosenDrone, List<Drone> listDrones)
+        {
+            IsChoosing = false;
+            int droneID = 0;
+            bool isValidDroneID = Int32.TryParse(chosenDrone, out droneID);
+
+            if (isValidDroneID)
+            {
+                int droneIndex = droneID - 1;
+                DroneIndex = droneIndex;
+                IsPlaying = true;
+                Console.Clear();
+                //Console.WriteLine($"Drone choisi:\n{listDrones[droneIndex]}");
+                //Console.Clear();
+                //listDrones[droneID - 1].MoveDrone();
+            }
+            else
+            {
+                Console.Clear();
+                ChooseDrone(listDrones);
+            }
+        }
         /// <summary>
         /// Permet d'écrire les instructions pour naviguer à travers le menu.
         /// </summary>
@@ -198,7 +236,8 @@ namespace DroneDistanceGame
                 //Le bouton "Play"
                 case 0:
                     Console.Clear();
-                    IsPlaying = true;
+                    IsChoosing = true;
+                    //IsPlaying = true;
                     break;
                 //Le bouton "Help"
                 case 1:
