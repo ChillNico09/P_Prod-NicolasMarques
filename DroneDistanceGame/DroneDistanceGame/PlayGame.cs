@@ -10,7 +10,7 @@ namespace DroneDistanceGame
     internal static class PlayGame
     {
         //Variables
-        private static List<Drone> listDrones = new List<Drone>();
+        private static List<Drone> listDrones = Interface.ListDrones;
         private static bool continuePlaying = Interface.ContinuePlaying;
         private static bool isPlaying = Interface.IsPlaying;
         private static bool isChoosing = Interface.IsChoosing;
@@ -23,7 +23,7 @@ namespace DroneDistanceGame
         {
             Interface.DisplayMenu();
             SetConsoleParam();
-            CreateListElement();
+            Interface.CreateListElement();
             ContinuePlayingLoop();
         }
 
@@ -47,7 +47,7 @@ namespace DroneDistanceGame
         {
             if (isChoosing)
             {
-                Interface.ChooseDrone(listDrones);
+                Interface.ChooseDrone();
                 UpdateVar();
                 IsPlayingLoop();
             }
@@ -59,10 +59,11 @@ namespace DroneDistanceGame
         private static void IsPlayingLoop()
         {
             while (isPlaying)
-            {
+            { 
                 listDrones[droneIndex].MoveDrone();
                 //Interface.ChooseDrone(listDrones);
                 Thread.Sleep(100);
+                UpdateVar();
             }
         }
 
@@ -73,16 +74,6 @@ namespace DroneDistanceGame
         {
             Console.CursorVisible = false;
             Console.ForegroundColor = ConsoleColor.White;
-        }
-
-        /// <summary>
-        /// Va créer/ajouter des éléments dans la list de drone
-        /// </summary>
-        private static void CreateListElement()
-        {
-            listDrones.Add(new Drone(50, 50f, 5f, "Badly damaged drone"));
-            listDrones.Add(new Drone(75, 75f, 3f, "Temu drone"));
-            listDrones.Add(new Drone(100, 100f, 1.5f, "Basic drone"));
         }
 
         /// <summary>

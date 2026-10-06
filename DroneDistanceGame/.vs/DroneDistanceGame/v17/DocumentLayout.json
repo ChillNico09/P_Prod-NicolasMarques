@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "D:\\ETML-2eme\\P_Prod\\DroneDistanceGame\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{37D422F5-9223-4A11-A27C-3ECE4598FDEA}|DroneDistanceGame\\DroneDistanceGame.csproj|d:\\etml-2eme\\p_prod\\dronedistancegame\\dronedistancegame\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37D422F5-9223-4A11-A27C-3ECE4598FDEA}|DroneDistanceGame\\DroneDistanceGame.csproj|solutionrelative:dronedistancegame\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{37D422F5-9223-4A11-A27C-3ECE4598FDEA}|DroneDistanceGame\\DroneDistanceGame.csproj|D:\\ETML-2eme\\P_Prod\\DroneDistanceGame\\dronedistancegame\\drone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37D422F5-9223-4A11-A27C-3ECE4598FDEA}|DroneDistanceGame\\DroneDistanceGame.csproj|solutionrelative:dronedistancegame\\drone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{37D422F5-9223-4A11-A27C-3ECE4598FDEA}|DroneDistanceGame\\DroneDistanceGame.csproj|D:\\ETML-2eme\\P_Prod\\DroneDistanceGame\\dronedistancegame\\playgame.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -15,8 +15,8 @@
       "RelativeMoniker": "D:0:0:{37D422F5-9223-4A11-A27C-3ECE4598FDEA}|DroneDistanceGame\\DroneDistanceGame.csproj|solutionrelative:dronedistancegame\\interface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{37D422F5-9223-4A11-A27C-3ECE4598FDEA}|DroneDistanceGame\\DroneDistanceGame.csproj|D:\\ETML-2eme\\P_Prod\\DroneDistanceGame\\dronedistancegame\\drone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{37D422F5-9223-4A11-A27C-3ECE4598FDEA}|DroneDistanceGame\\DroneDistanceGame.csproj|solutionrelative:dronedistancegame\\drone.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{37D422F5-9223-4A11-A27C-3ECE4598FDEA}|DroneDistanceGame\\DroneDistanceGame.csproj|d:\\etml-2eme\\p_prod\\dronedistancegame\\dronedistancegame\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37D422F5-9223-4A11-A27C-3ECE4598FDEA}|DroneDistanceGame\\DroneDistanceGame.csproj|solutionrelative:dronedistancegame\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,11 +26,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\ETML-2eme\\P_Prod\\DroneDistanceGame\\DroneDistanceGame\\Program.cs",
               "RelativeDocumentMoniker": "DroneDistanceGame\\Program.cs",
@@ -50,21 +50,10 @@
               "RelativeDocumentMoniker": "DroneDistanceGame\\PlayGame.cs",
               "ToolTip": "D:\\ETML-2eme\\P_Prod\\DroneDistanceGame\\DroneDistanceGame\\PlayGame.cs",
               "RelativeToolTip": "DroneDistanceGame\\PlayGame.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAIwEcAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-29T08:41:58.587Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Drone.cs",
-              "DocumentMoniker": "D:\\ETML-2eme\\P_Prod\\DroneDistanceGame\\DroneDistanceGame\\Drone.cs",
-              "RelativeDocumentMoniker": "DroneDistanceGame\\Drone.cs",
-              "ToolTip": "D:\\ETML-2eme\\P_Prod\\DroneDistanceGame\\DroneDistanceGame\\Drone.cs",
-              "RelativeToolTip": "DroneDistanceGame\\Drone.cs",
-              "ViewState": "AgIAAIsAAAAAAAAAAAAwwJ4AAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-22T07:18:28.441Z"
+              "WhenOpened": "2026-09-29T08:41:58.587Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -74,9 +63,23 @@
               "RelativeDocumentMoniker": "DroneDistanceGame\\Interface.cs",
               "ToolTip": "D:\\ETML-2eme\\P_Prod\\DroneDistanceGame\\DroneDistanceGame\\Interface.cs",
               "RelativeToolTip": "DroneDistanceGame\\Interface.cs",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAqwFMAAAB/AAAAAAAAAA==",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAtwJ4AAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-25T07:59:03.58Z"
+              "WhenOpened": "2026-09-25T07:59:03.58Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Drone.cs",
+              "DocumentMoniker": "D:\\ETML-2eme\\P_Prod\\DroneDistanceGame\\DroneDistanceGame\\Drone.cs",
+              "RelativeDocumentMoniker": "DroneDistanceGame\\Drone.cs",
+              "ToolTip": "D:\\ETML-2eme\\P_Prod\\DroneDistanceGame\\DroneDistanceGame\\Drone.cs",
+              "RelativeToolTip": "DroneDistanceGame\\Drone.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAiwGwAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-22T07:18:28.441Z",
+              "EditorCaption": ""
             }
           ]
         }

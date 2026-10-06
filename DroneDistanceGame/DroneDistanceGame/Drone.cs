@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DroneDistanceGame
@@ -106,8 +107,19 @@ namespace DroneDistanceGame
         {
             EraseSprite();
             DisplayDrone(isDead);
-            ChangeDroneValue();
-            DisplayStats(true);
+            if (!isDead)
+            {
+                ChangeDroneValue();
+                DisplayStats(true);
+            }
+            else
+            {
+                CurrentBattery = TotalBattery;
+                isInShop = true;
+                isDead = false;
+                posLeft = 0;
+                posTop = 0;
+            }
         }
 
         /// <summary>
@@ -153,6 +165,9 @@ namespace DroneDistanceGame
             {
                 Console.SetCursorPosition(posLeft, posTop);
                 Console.Write(SPRITEDEAD);
+                Thread.Sleep(1000);
+                Console.Clear();
+                Interface.DisplayMenu();
             }
             else
             {

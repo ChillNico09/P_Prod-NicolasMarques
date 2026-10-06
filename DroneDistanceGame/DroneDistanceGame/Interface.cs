@@ -12,12 +12,14 @@ namespace DroneDistanceGame
         
         //Variables tableaux
         private static string[] menuHome = { "Play", "Help", "Options", "Quit"};
+        public static List<Drone> ListDrones { get; private set; } = new List<Drone>();
 
         //Variables standards
         private static int menuSelected = 0;
         private static int maxCursorDown = menuHome.Length;
         private static int instructionOffsetTop = maxCursorDown + 2;
         private static int menuLeftOffset = 5;
+        private static int droneCount = ListDrones.Count;
         public static bool ContinuePlaying { get;  private set; } = true;
         public static bool IsPlaying { get; private set; } = false;
         public static bool IsChoosing { get; private set; } = false;
@@ -29,6 +31,7 @@ namespace DroneDistanceGame
         /// </summary>
         public static void DisplayMenu()
         {
+            IsPlaying = false;
             for (int i = 0; i < menuHome.Length; i++)
             {
                 Console.SetCursorPosition(menuLeftOffset, i);
@@ -46,6 +49,15 @@ namespace DroneDistanceGame
             }
         }
 
+        /// <summary>
+        /// Va créer/ajouter des éléments dans la list de drone
+        /// </summary>
+        public static void CreateListElement()
+        {
+            ListDrones.Add(new Drone(50, 50f, 5f, "Badly damaged drone"));
+            ListDrones.Add(new Drone(75, 75f, 3f, "Temu drone"));
+            ListDrones.Add(new Drone(100, 100f, 1.5f, "Basic drone"));
+        }
 
         /// <summary>
         /// Permet de gérer les touches presser par le joueur.
@@ -71,43 +83,56 @@ namespace DroneDistanceGame
             }
         }
 
-
-        public static void ChooseDrone(List<Drone> listDrones)
+        /// <summary>
+        /// Affiche les drones à disposition pour le joueur.
+        /// </summary>
+        public static void ChooseDrone()
         {
             int droneID = 0;
-            foreach (Drone drone in listDrones)
+            foreach (Drone drone in ListDrones)
             {
                 droneID++;
                 Console.WriteLine($"Numéro du drone: {droneID}\n{drone}\n");
+                droneCount = ListDrones.Count;
             }
 
-            Console.Write("\n\nChoisir le numéro du drone voulu (ne vérifie pas encore si la valeur est trop grande ou petite) : ");
+            Console.Write("\n\nChoisir le numéro du drone voulu : ");
             string chosenDrone = Console.ReadLine();
-            VerifyChosenDrone(chosenDrone, listDrones);
+            VerifyChosenDrone(chosenDrone);
         }
 
-        private static void VerifyChosenDrone(string chosenDrone, List<Drone> listDrones)
+        /// <summary>
+        /// Vérifie si on peut transformer l'input en int. Si ça fonctionne, on vérifie l'ID entrer pour donner le drone correspondant. S'il éxiste.
+        /// </summary>
+        /// <param name="chosenDrone">L'input entrer par l'utilisateur</param>
+        private static void VerifyChosenDrone(string chosenDrone)
         {
             IsChoosing = false;
             int droneID = 0;
-            bool isValidDroneID = Int32.TryParse(chosenDrone, out droneID);
+            bool isNumber = Int32.TryParse(chosenDrone, out droneID);
 
-            if (isValidDroneID)
+            if (isNumber)
             {
-                int droneIndex = droneID - 1;
-                DroneIndex = droneIndex;
-                IsPlaying = true;
-                Console.Clear();
-                //Console.WriteLine($"Drone choisi:\n{listDrones[droneIndex]}");
-                //Console.Clear();
-                //listDrones[droneID - 1].MoveDrone();
+                if(droneID <= droneCount && droneID > 0)
+                {
+                    int droneIndex = droneID - 1;
+                    DroneIndex = droneIndex;
+                    IsPlaying = true;
+                    Console.Clear();
+                }
+                else
+                {
+                    Console.Clear();
+                    ChooseDrone();
+                }
             }
             else
             {
                 Console.Clear();
-                ChooseDrone(listDrones);
+                ChooseDrone();
             }
         }
+
         /// <summary>
         /// Permet d'écrire les instructions pour naviguer à travers le menu.
         /// </summary>
