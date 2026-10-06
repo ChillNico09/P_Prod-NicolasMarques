@@ -54,9 +54,9 @@ namespace DroneDistanceGame
         /// </summary>
         public static void CreateListElement()
         {
-            ListDrones.Add(new Drone(50, 50f, 5f, "Badly damaged drone"));
-            ListDrones.Add(new Drone(75, 75f, 3f, "Temu drone"));
-            ListDrones.Add(new Drone(100, 100f, 1.5f, "Basic drone"));
+            ListDrones.Add(new Drone(50, 50f, 5f, "Badly damaged drone", 0));
+            ListDrones.Add(new Drone(75, 75f, 3f, "Temu drone", 10));
+            ListDrones.Add(new Drone(100, 100f, 1.5f, "Basic drone", 100));
         }
 
         /// <summary>
@@ -95,6 +95,7 @@ namespace DroneDistanceGame
                 Console.WriteLine($"Numéro du drone: {droneID}\n{drone}\n");
                 droneCount = ListDrones.Count;
             }
+            Money.WriteMoney();
 
             Console.Write("\n\nChoisir le numéro du drone voulu : ");
             string chosenDrone = Console.ReadLine();
@@ -110,26 +111,64 @@ namespace DroneDistanceGame
             IsChoosing = false;
             int droneID = 0;
             bool isNumber = Int32.TryParse(chosenDrone, out droneID);
+            bool hasPayed = false;
 
             if (isNumber)
             {
                 if(droneID <= droneCount && droneID > 0)
                 {
                     int droneIndex = droneID - 1;
-                    DroneIndex = droneIndex;
-                    IsPlaying = true;
-                    Console.Clear();
+                    Drone currentDrone = ListDrones[droneIndex];
+                    hasPayed = PayDrone(currentDrone);
+                    if (hasPayed)
+                    {
+                        DroneIndex = droneIndex;
+                        IsPlaying = true;
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        ChooseAgain();
+                    }
                 }
                 else
                 {
-                    Console.Clear();
-                    ChooseDrone();
+                    ChooseAgain();
                 }
             }
             else
             {
-                Console.Clear();
-                ChooseDrone();
+                ChooseAgain();
+            }
+        }
+
+        /// <summary>
+        /// Va redemander au joueur de choisir un drone
+        /// </summary>
+        private static void ChooseAgain()
+        {
+            Console.Clear();
+            ChooseDrone();
+        }
+
+        private static bool PayDrone(Drone currentDrone)
+        {
+            bool successPay = false;
+            if (!currentDrone.isUnlocked)
+            {
+                successPay = currentDrone.UnlockDrone();
+                if (successPay)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return true;
             }
         }
 

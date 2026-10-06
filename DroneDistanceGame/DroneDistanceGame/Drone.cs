@@ -17,6 +17,7 @@ namespace DroneDistanceGame
         private int posTop;
         private int posLeft;
         private bool isInShop;
+        private int moneyAward = 1;
 
         private int _totalBattery;
         private float _currentBattery;
@@ -84,18 +85,22 @@ namespace DroneDistanceGame
         }
 
         public string DroneName { get; private set; }
+        public bool isUnlocked { get; private set; } = false;
+        public int DroneCost { get; private set; }
 
-        public Drone(int totalBattery, float currentBattery, float batteryUsage, string droneName)
+        public Drone(int totalBattery, float currentBattery, float batteryUsage, string droneName, int droneCost)
         {
             this.TotalBattery = totalBattery;
             this.CurrentBattery = currentBattery;
             this.BatteryUsage = batteryUsage;
+            this.DroneCost = droneCost;
 
             isDead = false;
             posLeft = 0;
             posTop = 0;
             DroneName = droneName;
             isInShop = true;
+            
         }
 
 
@@ -105,21 +110,41 @@ namespace DroneDistanceGame
         /// </summary>
         public void MoveDrone()
         {
+            bool beenPaid = false;
             EraseSprite();
             DisplayDrone(isDead);
             if (!isDead)
             {
                 ChangeDroneValue();
                 DisplayStats(true);
+                moneyAward = posLeft;
             }
             else
             {
-                CurrentBattery = TotalBattery;
-                isInShop = true;
-                isDead = false;
-                posLeft = 0;
-                posTop = 0;
+                beenPaid = Money.Paycheck(moneyAward);
+                if (beenPaid)
+                {
+                    BackToMenu();
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Petit tricheur!");
+                }
             }
+        }
+
+        /// <summary>
+        /// Retourner au menu et reset les stats du drone
+        /// </summary>
+        private void BackToMenu()
+        {
+            CurrentBattery = TotalBattery;
+            isInShop = true;
+            isDead = false;
+            posLeft = 0;
+            posTop = 0;
+            moneyAward = 0;
         }
 
         /// <summary>
@@ -189,15 +214,41 @@ namespace DroneDistanceGame
             }
         }
 
+        /// <summary>
+        /// Pour débloquer le drone
+        /// </summary>
+        /// <returns>Si le joueur a bien débloqué le drone</returns>
+        public bool UnlockDrone()
+        {
+            if (!isUnlocked)
+            {
+                isUnlocked = Money.PayDrone(DroneCost);
+                if (isUnlocked)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                Console.Write("Le drone est déjà débloqué");
+                return true;
+            }
+            
+        }
+
         public override string ToString()
         {
             if (isInShop)
             {
-                return $"Modèle: {DroneName}\nBatterie total: {_totalBattery}\nUtilisation de la batterie: {_batteryUsage}";
+                return $"Modèle : {DroneName}\nPrix : {DroneCost}\nBatterie total : {_totalBattery}\nUtilisation de la batterie : {_batteryUsage}\nAcheter : {isUnlocked}";
             }
             else
             {
-                return $"Batterie total: {_totalBattery}\nBatterie actuel: {Math.Round(_currentBattery, 2)}  \nDistance: {posLeft}";
+                return $"Batterie total : {_totalBattery}\nBatterie actuel : {Math.Round(_currentBattery, 2)}  \nDistance : {posLeft}\nRécompense : {moneyAward}";
             }
         }
 
