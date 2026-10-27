@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -54,9 +55,12 @@ namespace DroneDistanceGame
         /// </summary>
         public static void CreateListElement()
         {
-            ListDrones.Add(new Drone(50, 50f, 5f, "Badly damaged drone", 0));
-            ListDrones.Add(new Drone(75, 75f, 3f, "Temu drone", 10));
-            ListDrones.Add(new Drone(100, 100f, 1.5f, "Basic drone", 100));
+            ListDrones.Add(new Drone(50, 50f, 5f, "Drone cassé", 0, 200));
+            ListDrones.Add(new Drone(75, 75f, 3f, "Drone Temu", 35, 150));
+            ListDrones.Add(new Drone(100, 100f, 1.5f, "Drone basique", 105, 100));
+            ListDrones.Add(new Drone(100, 100f, 1.3f, "Drone basique nullement pimpé", 199, 90));
+            ListDrones.Add(new Drone(150, 150f, 1f, "Drone écologique (conçu par un stagiaire)", 300, 175));
+            ListDrones.Add(new Drone(175, 175f, 2.5f, "Drone de course", 567, 50));
         }
 
         /// <summary>
@@ -88,18 +92,25 @@ namespace DroneDistanceGame
         /// </summary>
         public static void ChooseDrone()
         {
-            int droneID = 0;
-            foreach (Drone drone in ListDrones)
-            {
-                droneID++;
-                Console.WriteLine($"Numéro du drone: {droneID}\n{drone}\n");
-                droneCount = ListDrones.Count;
-            }
+            ShowDroneShop(0);
+            droneCount = ListDrones.Count;
             Money.WriteMoney();
 
             Console.Write("\n\nChoisir le numéro du drone voulu : ");
             string chosenDrone = Console.ReadLine();
             VerifyChosenDrone(chosenDrone);
+        }
+
+        private static void ShowDroneShop(int droneID)
+        {
+            //H remet au début de la fenêtre. 0J efface tout ce qui suis le curseur. 
+            //3J efface le buffer (ce qui est hors fenêtre à cause du scroll).
+            Console.Write("\x1b[H\x1b[0J\x1b[3J");
+            foreach (Drone drone in ListDrones)
+            {
+                droneID++;
+                Console.WriteLine($"Numéro du drone: {droneID}\n{drone}\n");
+            }
         }
 
         /// <summary>
@@ -143,14 +154,10 @@ namespace DroneDistanceGame
         }
 
         /// <summary>
-        /// Va redemander au joueur de choisir un drone
+        /// Permet d'essayer d'acheter le drone bloquer
         /// </summary>
-        private static void ChooseAgain()
-        {
-            Console.Clear();
-            ChooseDrone();
-        }
-
+        /// <param name="currentDrone">Le drone choisi</param>
+        /// <returns>Si la transaction a réussi</returns>
         private static bool PayDrone(Drone currentDrone)
         {
             bool successPay = false;
@@ -170,6 +177,15 @@ namespace DroneDistanceGame
             {
                 return true;
             }
+        }
+
+        /// <summary>
+        /// Va redemander au joueur de choisir un drone
+        /// </summary>
+        private static void ChooseAgain()
+        {
+            Console.Clear();
+            ChooseDrone();
         }
 
         /// <summary>

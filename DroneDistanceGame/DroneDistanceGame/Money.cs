@@ -44,7 +44,8 @@ namespace DroneDistanceGame
         /// </summary>
         public static void WriteMoney()
         {
-            Console.Write($"Argent : {CurrentMoney}");
+            Console.Write($"Argent : \x1b[38;5;118m{CurrentMoney}\x1b[97m");
         }
+
     }
 }

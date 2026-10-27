@@ -87,20 +87,21 @@ namespace DroneDistanceGame
         public string DroneName { get; private set; }
         public bool isUnlocked { get; private set; } = false;
         public int DroneCost { get; private set; }
+        public int Speed { get; private set; }
 
-        public Drone(int totalBattery, float currentBattery, float batteryUsage, string droneName, int droneCost)
+        public Drone(int totalBattery, float currentBattery, float batteryUsage, string droneName, int droneCost, int speed)
         {
             this.TotalBattery = totalBattery;
             this.CurrentBattery = currentBattery;
             this.BatteryUsage = batteryUsage;
             this.DroneCost = droneCost;
+            this.Speed = speed;
 
             isDead = false;
             posLeft = 0;
             posTop = 0;
             DroneName = droneName;
             isInShop = true;
-            
         }
 
 
@@ -244,11 +245,11 @@ namespace DroneDistanceGame
         {
             if (isInShop)
             {
-                return $"Modèle : {DroneName}\nPrix : {DroneCost}\nBatterie total : {_totalBattery}\nUtilisation de la batterie : {_batteryUsage}\nAcheter : {isUnlocked}";
+                return $"Modèle : \x1b[38;5;159m{DroneName}\n\x1b[97mPrix : \x1b[38;5;118m{DroneCost}\n\x1b[97mBatterie total : \x1b[38;5;220m{_totalBattery}\n\x1b[97mUtilisation de la batterie : \x1b[38;5;208m{_batteryUsage}\n\x1b[97mDélai (vitesse) : \x1b[38;5;220m{Speed}\n\x1b[97mAcheter : \x1b[38;5;57m{isUnlocked}\x1b[97m";
             }
             else
             {
-                return $"Batterie total : {_totalBattery}\nBatterie actuel : {Math.Round(_currentBattery, 2)}  \nDistance : {posLeft}\nRécompense : {moneyAward}";
+                return $"Batterie total : \x1b[38;5;220m{_totalBattery}\n\x1b[97mBatterie actuel : \x1b[38;5;196m{Math.Round(_currentBattery, 2)}  \n\x1b[97mDistance : \x1b[38;5;50m{posLeft}\n\x1b[97mRécompense : \x1b[38;5;150m{moneyAward}\n\n\x1b[97mArgent : \x1b[38;5;118m{Money.CurrentMoney}\x1b[97m";
             }
         }
 

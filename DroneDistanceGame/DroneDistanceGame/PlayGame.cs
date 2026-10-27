@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -59,10 +60,10 @@ namespace DroneDistanceGame
         private static void IsPlayingLoop()
         {
             while (isPlaying)
-            { 
+            {
                 listDrones[droneIndex].MoveDrone();
                 //Interface.ChooseDrone(listDrones);
-                Thread.Sleep(100);
+                Thread.Sleep(listDrones[droneIndex].Speed);
                 UpdateVar();
             }
         }
